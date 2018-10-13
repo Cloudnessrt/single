@@ -52,7 +52,7 @@
         </javaClientGenerator>
 
 
-        <table schema="single" tableName="use_account" domainObjectName="Account" modelType="flat"
+        <table schema="single" tableName="user" domainObjectName="UserDo" modelType="flat"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

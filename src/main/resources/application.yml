@@ -4,7 +4,7 @@ project:
     url: jdbc:mysql://127.0.0.1:3306/${project.name:single}
     name: single
     username: root
-    password: 123
+    password: root
 
 server:
   port: 8080
@@ -33,10 +33,14 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.project.single.po
+  type-aliases-package: com.project.single.doentity.common
 
 pagehelper:
   helperDialect: mysql
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
+
+logging:
+  config: classpath:log/logback.xml

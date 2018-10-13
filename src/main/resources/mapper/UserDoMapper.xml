@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.single.mapper.UserDoMapper">
+  <resultMap id="BaseDo" type="com.project.single.doentity.common.BaseDo">
+    <result column="create_person_id" jdbcType="VARCHAR" property="createPersonId" />
+    <result column="create_person_name" jdbcType="VARCHAR" property="createPersonName" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="last_modity_person_id" jdbcType="VARCHAR" property="lastModityPersonId" />
+    <result column="last_modity_person_name" jdbcType="VARCHAR" property="lastModityPersonName" />
+    <result column="last_modity_time" jdbcType="DATE" property="lastModityTime" />
+    <result column="exist_enum" jdbcType="VARCHAR" property="existEnum" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.project.single.doentity.common.UserDo" extends="BaseDo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="create_person_id" jdbcType="VARCHAR" property="createPersonId" />
+    <result column="create_person_name" jdbcType="VARCHAR" property="createPersonName" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="last_modity_person_id" jdbcType="VARCHAR" property="lastModityPersonId" />
+    <result column="last_modity_person_name" jdbcType="VARCHAR" property="lastModityPersonName" />
+    <result column="last_modity_time" jdbcType="DATE" property="lastModityTime" />
+    <result column="exist_enum" jdbcType="VARCHAR" property="existEnum" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="sex_enum" jdbcType="VARCHAR" property="sexEnum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_person_id, create_person_name, create_time, last_modity_person_id, last_modity_person_name, 
+    last_modity_time, exist_enum, name, account, password, sex_enum
+  </sql>
+
+  <select id="queryByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryByAllKey" parameterType="com.project.single.doentity.common.UserDo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    <where>
+      <if test="name!=null">
+        and name = #{name}
+      </if>
+      <if test="account!=null">
+        and account = #{account}
+      </if>
+      <if test="password!=null">
+        and password = #{password}
+      </if>
+      <if test="sexEnum!=null">
+        and sex_enum = #{sexEnum}
+      </if>
+    </where>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.project.single.doentity.common.UserDo">
+    insert into user (id, create_person_id, create_person_name, 
+      create_time, last_modity_person_id, last_modity_person_name, 
+      last_modity_time, exist_enum, name, 
+      account, password, sex_enum
+      )
+    values (#{id,jdbcType=VARCHAR}, #{createPersonId,jdbcType=VARCHAR}, #{createPersonName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastModityPersonId,jdbcType=VARCHAR}, #{lastModityPersonName,jdbcType=VARCHAR}, 
+      #{lastModityTime,jdbcType=TIMESTAMP}, #{existEnum,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+      #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{sexEnum,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.project.single.doentity.common.UserDo">
+    update user
+    <set>
+      <if test="createPersonId != null">
+        create_person_id = #{createPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="createPersonName != null">
+        create_person_name = #{createPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModityPersonId != null">
+        last_modity_person_id = #{lastModityPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModityPersonName != null">
+        last_modity_person_name = #{lastModityPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModityTime != null">
+        last_modity_time = #{lastModityTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="existEnum != null">
+        exist_enum = #{existEnum,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sexEnum != null">
+        sex_enum = #{sexEnum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.project.single.doentity.common.UserDo">
+    update user
+    set create_person_id = #{createPersonId,jdbcType=VARCHAR},
+      create_person_name = #{createPersonName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_modity_person_id = #{lastModityPersonId,jdbcType=VARCHAR},
+      last_modity_person_name = #{lastModityPersonName,jdbcType=VARCHAR},
+      last_modity_time = #{lastModityTime,jdbcType=TIMESTAMP},
+      exist_enum = #{existEnum,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      sex_enum = #{sexEnum,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
