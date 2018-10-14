@@ -7,7 +7,7 @@ import com.project.single.common.enums.PoExistEnum;
 import com.project.single.common.util.ExecInfo;
 import com.project.single.common.util.QueryPage;
 import com.project.single.doentity.common.UserDo;
-import com.project.single.mapper.UserDoMapper;
+import com.project.single.mapper.user.UserDoMapper;
 import com.project.single.service.common.IUserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

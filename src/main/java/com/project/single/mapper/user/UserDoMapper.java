@@ -1,4 +1,4 @@
-package com.project.single.mapper;
+package com.project.single.mapper.user;
 
 
 import com.project.single.doentity.common.UserDo;

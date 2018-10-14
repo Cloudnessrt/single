@@ -1,7 +1,6 @@
 package com.project.single.User;
 
 import com.project.single.SingleApplication;
-import com.project.single.common.util.QueryPage;
 import com.project.single.doentity.common.UserDo;
 import com.project.single.service.common.IUserService;
 import org.junit.Test;
@@ -19,6 +18,20 @@ public class User {
 
     @Test
     public void testShow() throws Exception {
+        System.out.println(System.currentTimeMillis());
+        for (int i=0;i<10000;i++){
+            UserDo userDo=new UserDo();
+            userDo.setAccount("123");
+            userServiceImpl.insert(userDo);
+        }
+        System.out.println(System.currentTimeMillis());
+    }
+
+
+
+
+   /* @Test
+    public void curdShow() throws Exception {
         UserDo userDo=new UserDo();
         userDo.setAccount("123");
         userServiceImpl.insert(userDo);
@@ -33,5 +46,5 @@ public class User {
         userServiceImpl.queryPage(page);
         userServiceImpl.delete(userDo.getId());
         userServiceImpl.query(userDo.getId());
-    }
+    }*/
 }
